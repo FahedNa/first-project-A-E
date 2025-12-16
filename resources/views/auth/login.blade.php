@@ -5,6 +5,13 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        {{-- <!-- Email Address or mobile  -->
+        <div>
+            <x-input-label for="identify" :value="__('Email or mobile')" />
+            <x-text-input id="identify" class="block mt-1 w-full" type="text" name="identify" :value="old('identify')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('identify')" class="mt-2" />
+        </div> --}}
+
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />
@@ -12,8 +19,8 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
-         <!-- نجربة الدخول من خلال رقم الهاتف -->
-        {{-- <div>
+         {{-- <!-- نجربة الدخول من خلال رقم الهاتف -->
+        <div>
             <x-input-label for="mobile" :value="__('mobile')"/>
             <x-text-input id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')" />
             <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
