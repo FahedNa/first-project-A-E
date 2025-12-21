@@ -46,6 +46,15 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        //لربط المسار الذي نرفع به الصورة
+        'offers' => [
+            'driver' => 'local',
+            'root' => base_path('app/public/images/offers/'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+            'throw' => false,
+            'report' => false,
+        ],
 
         's3' => [
             'driver' => 's3',

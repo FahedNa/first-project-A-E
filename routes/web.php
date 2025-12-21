@@ -5,13 +5,19 @@ use App\Http\Controllers\Admin\SecoundController;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CrudController;
+use App\Http\Controllers\AddPropertyController;
+use App\Http\Controllers\Auth\CustomAuthController;
+// use App\Http\Controllers\CustomAuthController;
+ use App\Http\Middleware\CheckAge;
+
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/test1', function () {
-    return "welcome";
+    return "test1";
 });
 
 //route parametar  {required}
@@ -95,6 +101,60 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
-
 require __DIR__.'/auth.php';
+
+
+Route::get('fillable',[CrudController::class,'getOffers']);
+// هذه تريد اشياء خاصة بها
+Route::get('fillable',[CrudController::class,'getOffers_to_this_method_only']);
+//prifex => اي اسم
+Route::group(['prefix'=>'offers'],function(){
+    // Route::get('store',[CrudController::class,'store']);
+    //viwe يعني  form  تنادي عل create
+    Route::get('create',[CrudController::class,'create']);
+    Route::post('store',[CrudController::class,'store'])->name('offers.store');
+    // عرض  data
+    Route::get('all',[CrudController::class,'getAllOffers']);
+
+ Route::get('edit/{offer_id}',[CrudController::class,'editOffer']);
+Route::post('update/{offer_id}',[CrudController::class,'updateOffer'])->name('offers.update');
+Route::get('delete/{offer_id}',[CrudController::class,'deleteOffer'])->name('offers.delete');
+
+// Route::get('all',[CrudController::class,'deleteOffer'])->name('offers.delete');
+
+});
+
+
+// Route::get('/add', function () {
+//     return view('layouts.offers.addProperty');
+// });
+
+Route::get('add',[AddPropertyController::class,'store']);
+
+Route::group(['prefix'=>'add'],function(){
+    // Route::get('store',[CrudController::class,'store']);
+    //viwe يعني  form  تنادي عل create
+    Route::get('create',[AddPropertyController::class,'create']);
+    Route::post('store',[AddPropertyController::class,'store'])->name('add.store');
+    // عرض  data
+    Route::get('all',[AddPropertyController::class,'getAllProperty']);
+
+     Route::get('edit/{id}',[AddPropertyController::class,'editProperty'])->name('Property.edit');
+    Route::post('update/{id}',[AddPropertyController::class,'updateProperty'])->name('Property.update');
+    Route::get('delete/{id}',[AddPropertyController::class,'deleteProperty'])->name('Property.delete');
+
+
+});
+
+
+
+// begain authuntication
+    // Route::get('adualt','CustomAuthController@adualt');
+    // Route::get('adualt',[CustomAuthController::class,'adualt'])->middleware('CheckAge');
+    Route::group(['meddleware'=>['auth','CheckAge']],function(){
+
+        Route::get('adualt',[CustomAuthController::class,'adualt'])->name('adult');
+    });
+
+
+// end authuntication
