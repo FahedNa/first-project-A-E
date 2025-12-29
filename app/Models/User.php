@@ -49,4 +49,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+
+// begain relations
+public function phone(){
+    //name model , forgn ky
+    return $this -> hasOne(Phone::class,'user_id');
+}
+// end relations
+
+
+
+
 }

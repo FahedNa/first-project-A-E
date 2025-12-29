@@ -2,89 +2,135 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Properties</title>
-    {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}"> --}}
-      {{-- bootstrap --}}
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prime Properties - Luxury Real Estate</title>
 
-    <style>
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 20px;
-        }
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .card {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
 
-        .card img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-        }
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
-        .card-body {
-            padding: 15px;
-        }
-
-        .price {
-            color: #000000;
-            font-weight: bold;
-            font-size: 18px;
-        }
-    </style>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
-   @if (Session::has('success'))
-            <div class="alert alert-success">
-                {{session()->get('success'); }}
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                <i class="fas fa-home me-2"></i>Prime Properties
+            </a>
+            <div class="ms-auto">
+                <span class="badge bg-light text-dark fs-6">
+                    <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
+                </span>
             </div>
+        </div>
+    </nav>
 
-            @endif
-          @if (Session::has('error'))
-            <div class="alert alert-danger">
-                {{session()->get('error'); }}
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title">Discover Your Dream Property</h1>
+            <p class="hero-subtitle">
+                Browse our exclusive collection of premium properties. Find the perfect home that matches your lifestyle and budget.
+            </p>
+        </div>
+    </section>
 
-            @endif
-<div class="container">
-    <h2>🏘 Properties</h2>
-    <br><br>
 
-    <div class="cards">
-        @foreach($add as $add)
-            <div class="card">
-                <img src="{{  asset('1.png')}}">
 
-                <div class="card-body">
+    <!-- Main Content -->
+    <main class="container">
 
-                    <p><b>Title: </b>{{ $add->Property_Title}}</p>
-                    <h3>Description</h3>
-                    <p>{{ $add->Description }}</p>
-                    <p><b>Property_Type: </b> {{ $add->Property_Type }}</p>
-                    <p> <b>Street_Address: </b> {{ $add->Street_Address }}   </p>
 
-                    <p>
-                        🛏 {{ $add->Bedrooms }} |
-                        🛁 {{ $add->Bathrooms }} |
-                        📐 {{ $add->Square_Feet }} sqft | <b>Floor: </b> {{ $add->floor }}
+        <!-- Properties Section -->
+        <h2 class="section-title">Featured Properties</h2>
+
+        <!-- Properties Grid -->
+        <div class="cards">
+            @foreach($add as $property)
+            <div class="property-card">
+                <!-- Property Image -->
+                <div class="card-image">
+                    <img src="{{ asset('1.png') }}" alt="{{ $property->Property_Title }}">
+                    <div class="property-badge">{{ $property->Property_Type }}</div>
+                    <div class="status-badge status-{{ strtolower($property->Status) }}">
+                        {{ $property->Status }}
+                    </div>
+                </div>
+
+                <!-- Property Details -->
+                <div class="card-content">
+                    <!-- Title and Location -->
+                    <h3 class="property-title">{{ $property->Property_Title }}</h3>
+                    <div class="property-location">
+                        <i class="fas fa-map-marker-alt"></i> {{ $property->Street_Address }}
+                    </div>
+
+                    <!-- Description -->
+                    <p class="property-description">
+                        @php
+                            $description = $property->Description;
+                            $shortDescription = strlen($description) > 120 ? substr($description, 0, 117) . '...' : $description;
+                        @endphp
+                        {{ $shortDescription }}
                     </p>
-                    <p>Status: <b>{{ $add->Status }}</b></p>
-                    <p><b>Phone_number: </b> {{ $add->phone_num }} </p>
-                    <p class="price">Price: {{$add->Price }}$</p>
-                    {{--لانها غير موجودة فيcontroller select   id  كان ماعم ياخذ   --}}
-                 <a href="{{ route('Property.edit',$add-> id) }}" class="btn btn-success">update</a>
-                 <a href="{{ route('Property.delete',$add-> id) }}" class="btn btn-danger">delete</a>
 
+                    <!-- Features -->
+                    <div class="property-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bed"></i>
+                            </div>
+                            <div class="feature-label">Bedrooms</div>
+                            <div class="feature-value">{{ $property->Bedrooms }}</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-bath"></i>
+                            </div>
+                            <div class="feature-label">Bathrooms</div>
+                            <div class="feature-value">{{ $property->Bathrooms }}</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-ruler-combined"></i>
+                            </div>
+                            <div class="feature-label">Square Feet</div>
+                            <div class="feature-value">{{ $property->Square_Feet }}</div>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <div class="feature-label">Floor</div>
+                            <div class="feature-value">{{ $property->floor }}</div>
+                        </div>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="price-tag">
+                        ${{ number_format($property->Price, 2) }}
+
+                    </div>
+
+                    <!-- Additional Info -->
+                    <div class="property-meta">
+                            <p class="meta-value">Contact Number:{{ $property->phone_num }}</p>
+                    </div>
                 </div>
             </div>
-        @endforeach
-    </div>
-</div>
+            @endforeach
+
+        </div>
+    </main>
+
+
 
 </body>
 </html>

@@ -1,16 +1,11 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        {{-- <!-- Email Address or mobile  -->
-        <div>
-            <x-input-label for="identify" :value="__('Email or mobile')" />
-            <x-text-input id="identify" class="block mt-1 w-full" type="text" name="identify" :value="old('identify')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('identify')" class="mt-2" />
-        </div> --}}
+
 
         <!-- Email Address -->
         <div>
@@ -18,13 +13,6 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
-         {{-- <!-- نجربة الدخول من خلال رقم الهاتف -->
-        <div>
-            <x-input-label for="mobile" :value="__('mobile')"/>
-            <x-text-input id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')" />
-            <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
-        </div> --}}
 
         <!-- Password -->
         <div class="mt-4">
@@ -58,4 +46,76 @@
             </x-primary-button>
         </div>
     </form>
-</x-guest-layout>
+</x-guest-layout> --}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Log in</title>
+
+    {{-- CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Left Section -->
+    <div class="left">
+        <div class="overlay">
+            <h1>Welcome Back</h1>
+            <p>Access your property portfolio and manage your listings with ease.</p>
+        </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="right">
+        <div class="form-box">
+
+            <h2 style="font-size: 30px">Log In</h2>
+            <p class="subtitle">Enter your credentials to access your account</p>
+
+
+
+
+
+
+            {{-- Laravel Login Form --}}
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
+
+                <label>Email Address</label>
+                <input
+                    type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    required
+                >
+
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+                    required
+                >
+
+                <div class="options">
+                   <p></p>
+                    <a href="{{ route('password.request') }}">Forgot password?</a>
+                </div>
+
+                <button type="submit">Sign In</button>
+            </form>
+
+            <p class="register">
+                Don't have an account?
+                <a href="{{ route('register') }}">Register Now</a>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

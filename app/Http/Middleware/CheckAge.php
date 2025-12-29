@@ -3,9 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Container\Attributes\Auth;
+// use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CheckAge
 {
@@ -16,7 +17,7 @@ class CheckAge
      */
     public function handle(Request $request, Closure $next): Response
     {
-        //logic middleware
+        // logic middleware
 
         // Auth::users()-> age;
         // if($request -> age < 18){

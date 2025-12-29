@@ -73,7 +73,7 @@ class AddPropertyController extends Controller
             'Price'=>$request->Price,
             'Property_Type'=>$request->Property_Type,
             'Street_Address'=>$request->Street_Address,
-            'City'=>$request->City,
+            'phone_num'=>$request->phone_num,
             'floor'=>$request->floor,
             'Bedrooms'=>$request->Bedrooms,
             'Bathrooms'=>$request->Bathrooms,
@@ -85,7 +85,10 @@ class AddPropertyController extends Controller
 
 
     }
-
+    public function AdmingetAllProperty(){
+                    $add=AddProperty::select('id','Property_Title','Description','Price','Property_Type','Street_Address','phone_num','floor','Bedrooms','Bathrooms','Square_Feet','Status','Image')->get();
+        return view('layouts.offers.adminallProperty',compact('add'));
+    }
         //getallofeer
         public function getAllProperty(){
             //get return data as collection
@@ -120,9 +123,7 @@ class AddPropertyController extends Controller
             return redirect()-> back() -> with(['success' => 'success deleted']);
 
         }
-
-
-
+ 
 
 
 }

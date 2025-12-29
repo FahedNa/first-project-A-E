@@ -1,57 +1,91 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+{{-- 00000000000000000000000000000000000000000000000000 --}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rigister</title>
+
+    {{-- CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <!-- Left Section -->
+    <div class="left">
+        <div class="overlay">
+            <h1>Hi</h1>
+            <p>Access your property portfolio and manage your listings with ease.</p>
         </div>
+    </div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-         {{-- <!-- نجربة الدخول من خلال رقم الهاتف -->
-        <div>
-            <x-input-label for="mobile" :value="__('mobile')"/>
-            <x-text-input id="mobile" class="block mt-1 w-full" type="text" name="mobile" :value="old('mobile')" />
-            <x-input-error :messages="$errors->get('mobile')" class="mt-2" />
-        </div> --}}
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <!-- Right Section -->
+    <div class="right">
+        <div class="form-box">
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <h2 style="font-size: 30px">Register</h2>
+            <p class="subtitle">Enter your credentials to access your account</p>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+
+            {{-- Laravel Login Form --}}
+ <form method="POST" action="{{ route('register') }}">
+             @csrf
+
+
+
+                <label>Name</label>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="name"
+                    required
+                >
+                <label>Email Address</label>
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                    required
+                >
+
+                <label>Password</label>
+                <input
+                    type="password"
+                    name="password"
+
+                    placeholder="Password"
+                    required
+                >
+                <label>Confirm Password</label>
+                <input
+                    type="password"
+                    name="password_confirmation"
+
+                   placeholder="Password"
+                    required
+                >
+
+                <div class="options">
+                   <p></p>
+                         <a  href="{{ route('login') }}">
                 {{ __('Already registered?') }}
             </a>
+                </div>
+                <button type="submit">REGISTER</button>
+            </form>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
+
         </div>
-    </form>
-</x-guest-layout>
+    </div>
+
+</div>
+
+</body>
+</html>
+

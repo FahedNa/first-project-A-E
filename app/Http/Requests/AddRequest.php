@@ -27,7 +27,7 @@ class AddRequest extends FormRequest
             'Price'=>'required|numeric',
             'Property_Type'=>'required',
             'Street_Address'=>'required',
-            'phone_num'=>'required',
+            'phone_num'=>'required|numeric',
             'floor'=>'required|numeric',
             'Bedrooms'=>'required|numeric',
             'Bathrooms'=>'required|numeric',

@@ -72,14 +72,14 @@
         </div>
 
         <div class="grid-2">
+
             <div class="form-group">
                 <label>phone_num</label>
-                <input type="number" placeholder="09...." name="phone_num">
-                 @error('phone_num')
+                <input type="number" placeholder="09........" name="phone_num">
+                  @error('phone_num')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
             </div>
-
             <div class="form-group">
                 <label>floor</label>
                 <input type="number" placeholder="1.2.3.4.5......." name="floor">
