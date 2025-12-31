@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Properties - Luxury Real Estate</title>
+    <title>Real Estate</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,8 +21,8 @@
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="fas fa-home me-2"></i>Prime Properties
+            <a class="navbar-brand" href="{{ route('contact') }}">
+                <i class="fas fa-home me-2"></i>Properties
             </a>
             <div class="ms-auto">
                 <span class="badge bg-light text-dark fs-6">
@@ -46,10 +46,33 @@
 
     <!-- Main Content -->
     <main class="container">
+{{-- ........................................................ --}}
+<!-- Search Box -->
+<div class="container mb-4">
+    <form method="GET" action="{{ route('Property.all') }}">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+
+                <div class="input-group input-group-lg shadow-sm">
+                    <input type="text"
+                           name="search"
+                           class="form-control"
+                           placeholder="Search by title, address or type..."
+                           value="{{ request('search') }}">
+
+                    <button class="btn btn-dark" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>
 
 
         <!-- Properties Section -->
-        <h2 class="section-title">Featured Properties</h2>
+        <h2 class="section-title">All Properties</h2>
 
         <!-- Properties Grid -->
         <div class="cards">
@@ -57,7 +80,8 @@
             <div class="property-card">
                 <!-- Property Image -->
                 <div class="card-image">
-                    <img src="{{ asset('1.png') }}" alt="{{ $property->Property_Title }}">
+                  <img src="{{ asset('uploads/properties/' . $property->Image) }}"
+     alt="{{ $property->Property_Title }}">
                     <div class="property-badge">{{ $property->Property_Type }}</div>
                     <div class="status-badge status-{{ strtolower($property->Status) }}">
                         {{ $property->Status }}
@@ -129,7 +153,71 @@
 
         </div>
     </main>
+<!-- Add Special Property Section -->
+<div class="container mt-5 mb-5">
 
+    <!-- Section Title -->
+    <div class="text-center mb-5">
+        <h2 class="fw-bold">
+            <i class="fas fa-star text-warning me-2"></i>
+           Request Special Property
+        </h2>
+        <p class="text-muted">
+            Add a special property with details below
+        </p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <div class="card shadow-lg border-0">
+                <div class="card-body p-4">
+
+
+
+                    <form action="{{ route('result.store') }}" method="POST">
+                        @csrf
+
+                        <!-- Number -->
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-align-left me-1"></i> Number Phone
+                            </label>
+                            <input type="number" name="number"
+                                   class="form-control form-control-lg"
+                                   placeholder="Enter your number phone " required>
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-align-left me-1"></i> Description
+                            </label>
+                            <textarea name="description"
+                                      class="form-control"
+                                      rows="4"
+                                      placeholder="Enter spicial description" required></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid" >
+                            <button type="submit" class="navbar navbar-expand-lg" style="justify-content: center;">
+
+                                <div > Add Property</div>
+
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 
 </body>

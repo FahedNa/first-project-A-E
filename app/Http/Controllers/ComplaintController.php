@@ -34,7 +34,9 @@ class ComplaintController extends Controller
     // عرض جميع الشكاوي (اختياري للإدارة)
     public function index()
     {
-        $complaints = Complaint::orderBy('created_at', 'desc')->get();
+        // $complaints = Complaint::orderBy('created_at', 'desc')->get();
+                $complaints = Complaint::orderBy('created_at')->get();
+
         return view('complaints.index', compact('complaints'));
     }
 }

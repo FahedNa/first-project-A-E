@@ -7,24 +7,53 @@ use Illuminate\Http\Request;
 
 class SpecialPropertyController extends Controller
 {
-    // صفحة واحدة تجمع الإضافة والعرض
-    public function index()
-    {
-        $properties = SpecialProperty::orderBy('created_at', 'desc')->get();
-        return view('special_properties.index', compact('properties'));
-    }
+    // // صفحة واحدة تجمع الإضافة والعرض
+    // public function index()
+    // {
+    //     $properties = SpecialProperty::orderBy('created_at', 'desc')->get();
+    //     return view('special_properties.index', compact('properties'));
+    // }
 
-    // حفظ البيانات
-    public function store(Request $request)
+    // // حفظ البيانات
+    // public function store(Request $request)
+    // {
+    //     $request->validate([
+    //         'number' => 'required|max:255',
+    //         'description' => 'required',
+    //     ]);
+
+    //     SpecialProperty::create($request->all());
+
+    //     return redirect()->route('special-properties.index')
+    //         ->with('success', 'Property added successfully.');
+    // }
+
+        // return redirect()->route('result.index')->with('data', $data);
+
+
+  public function store(Request $request)
     {
         $request->validate([
-            'number' => 'required|unique:special_properties|max:255',
-            'description' => 'required',
+            'number' => 'required',
+            'description' => 'required'
         ]);
 
-        SpecialProperty::create($request->all());
+        SpecialProperty::create([
+            'number' => $request->number,
+            'description' => $request->description
+        ]);
 
-        return redirect()->route('special-properties.index')
-            ->with('success', 'Property added successfully.');
+        return redirect()->route('result.index');
+
     }
+
+    public function index()
+    {
+        $results = SpecialProperty::orderBy('created_at')->get();
+
+        return view('special_properties.index', compact('results'));
+    }
+
+
 }
+

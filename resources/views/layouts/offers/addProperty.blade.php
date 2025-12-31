@@ -16,9 +16,9 @@
 
             @endif
 <div class="container">
-    <h2>🏠 Add New Property</h2>
+    <h2 style="color:#2f6f64">🏠 <b>Add New Property</b></h2>
 
-    <form method="POST" action="{{ route('add.store') }}">
+    <form method="POST" action="{{ route('add.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Property Title</label>
@@ -52,15 +52,6 @@
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
             </div>
-
-            {{-- <div class="form-group">
-                <label>Property Type</label>
-                <select>
-                    <option>House</option>
-                    <option>Apartment</option>
-                    <option>Villa</option>
-                </select>
-            </div> --}}
         </div>
 
         <div class="form-group">
@@ -116,30 +107,25 @@
         </div>
 
         <div class="grid-2">
-            {{-- <div class="form-group">
-                <label>Status</label>
-                <select>
-                    <option>Available</option>
-                    <option>Sold</option>
-                    <option>Pending</option>
-                </select>
-            </div> --}}
-
             <div class="form-group">
                 <label>Status</label>
-                <input type="text" placeholder="Available,Sold,Pending,..." name="Status">
+                <input type="text" placeholder="Available,Sold,rented,..." name="Status">
                     @error('Status')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
             </div>
 
             <div class="form-group">
-                <label>Image URL (Optional)</label>
-                <input type="text" placeholder="https://example.com/image.jpg" name="Image">
-                    @error('Image')
+    <label>add Property Image</label>
+    <input type="file" name="Image" class="form-control" accept="image/*">
+                @error('Image')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
-            </div>
+    @error('Image')
+        <small class="form-text text-danger">{{ $message }}</small>
+    @enderror
+</div>
+
         </div>
 
         <div class="buttons">

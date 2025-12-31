@@ -29,6 +29,18 @@
             <p class="subtitle">Enter your credentials to access your account</p>
 
 
+@if ($errors->any())
+    <div  id="error-alert" style="
+        background:#ffe5e5;
+        color:#b30000;
+        padding:12px;
+        border-radius:6px;
+        margin-bottom:15px;
+        font-size:14px;
+    ">
+        {{ $errors->first() }}
+    </div>
+@endif
 
 
 
@@ -85,6 +97,17 @@
     </div>
 
 </div>
+<script>
+    setTimeout(function () {
+        const alert = document.getElementById('error-alert');
+        if (alert) {
+            alert.style.transition = 'opacity 0.5s ease';
+            alert.style.opacity = '0';
+
+            setTimeout(() => alert.remove(), 500);
+        }
+    }, 3000); // 5 ثواني
+</script>
 
 </body>
 </html>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Symfony\Component\HttpFoundation\Request;
 
 class LoginController extends Controller
 {
@@ -38,5 +39,14 @@ class LoginController extends Controller
         $this->middleware('auth')->only('logout');
     }
 
-    
+protected function authenticated(Request $request, $user)
+{
+    if ($user->is_admin) {
+        return redirect()->route('dashboard'); // المسؤول يروح للـ dashboard
+    }
+
+    return redirect()->route('contact'); // المستخدم العادي يروح للصفحة الرئيسية
+}
+
+
 }

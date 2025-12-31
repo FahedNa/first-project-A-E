@@ -15,9 +15,6 @@
         <link href="css/theme-1.css" rel="stylesheet" type="text/css" media="all"/>
         <link href="css/custom.css" rel="stylesheet" type="text/css" media="all"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-        <!--[if gte IE 9]>
-        	<link rel="stylesheet" type="text/css" href="css/ie9.css" />
-		<![endif]-->
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700%7CRaleway:700' rel='stylesheet' type='text/css'>
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
             <!-- إلى -->
@@ -36,7 +33,7 @@
     	</div>
 
 		<div class="nav-container">
-			<nav class="simple-bar top-bar">
+			<nav class="simple-bar top-bar" >
 				<div class="container">
 
 
@@ -47,58 +44,19 @@
 						</div>
 
                         <div class="col-md-9 col-sm-9 columns text-right">
-    <div style="display: flex; gap: 12px; align-items: center; justify-content: flex-end;">
-        <a href="{{ route('login') }}"
-           style="display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  color: #333;
-                  font-weight: 500;
-                  text-decoration: none;
-                  padding: 10px 22px;
-                  background: #f8f9fa;
-                  border-radius: 25px;
-                  border: 1px solid #dee2e6;
-                  transition: all 0.3s ease;
-                  ">
-            <i class="fas fa-sign-in-alt" style=" background: linear-gradient(135deg, #4d364748 0%, #38323e 100%)ك"></i>
-            Login
-        </a>
-        <a href="{{ route('register') }}"
-           style="display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  color: white;
-                  font-weight: 600;
-                  text-decoration: none;
-                  padding: 10px 22px;
-                   background: linear-gradient(135deg, #4d364748 0%, #38323e 100%);
-                  border-radius: 25px;
-                  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-                  transition: all 0.3s ease;">
-            <i class="fas fa-user-plus"></i>
-            Register
-        </a>
+
+             <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-success" style="background-color: #2f6f64">
+        Logout
+    </button>
+</form>
+
+
     </div>
 </div>
 				</div>
 			</nav>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -113,7 +71,7 @@
 
 					<li class="overlay">
 						<div class="background-image-holder parallax-background">
-							<img class="background-image" alt="Background Image" src="slider1.jpg">
+							<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/1767179604_Villa2.jpg') }}>
 							</div>
 							<div class="container align-vertical">
 							<div class="row">
@@ -131,7 +89,7 @@
 
 					<li class="overlay">
 						<div class="background-image-holder parallax-background">
-							<img class="background-image" alt="Background Image" src="slider2.jpg">
+							<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/1767179681_home2.jpg') }}>
 						</div>
 
 						<div class="container align-vertical">
@@ -147,7 +105,7 @@
 
 					<li class="overlay">
 						<div class="background-image-holder parallax-background">
-							<img class="background-image" alt="Background Image" src="img/image_slider3.jpg">
+							<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/slider1.jpg') }}>
 						</div>
 
 						<div class="container align-vertical">
@@ -168,7 +126,7 @@
 
 			<section class="feature-selector">
 				<div class="container">
-									<center><span style="font-size:40px;" ><b>All Property  </b></span></center>
+									<center><span style="font-size:40px;color:#777777;" ><b>All Property  </b></span></center>
 				</div>
 
 
@@ -182,9 +140,9 @@
 
 						<div class="col-md-4 col-sm-6 no-pad project print image-holder">
 							<div class="background-image-holder">
-								<img class="background-image" alt="Background Image" src="img/interior_1.jpg">
+								<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/1767176229_shop.jpg') }}>
 							</div>
-							<div class="hover-state">
+							<div class="hover-state" style="background:#2f6f646e;">
 								<div class="align-vertical">
 									<a href="{{ route('Property.all') }}" class="btn btn-primary btn-white">Show all Property</a>
 								</div>
@@ -193,20 +151,20 @@
 
 						<div class="col-md-4 col-sm-6 no-pad project branding image-holder">
 							<div class="background-image-holder">
-								<img class="background-image" alt="Background Image" src="img/interior_2.jpg">
+								<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/1767178944_home.jpg') }}>
 							</div>
-							<div class="hover-state">
+							<div class="hover-state"style="background:#2f6f646e;">
 								<div class="align-vertical">
-									<a href="{{ route('Property.all') }}" class="btn btn-primary btn-white">Show all Property</a>
+									<a href="{{ route('Property.all') }}" class="btn btn-primary btn-white" >Show all Property</a>
 								</div>
 							</div>
 						</div>
 
 						<div class="col-md-4 col-sm-6 no-pad project print image-holder">
 							<div class="background-image-holder">
-								<img class="background-image" alt="Background Image" src="img/interior_3.jpg">
+								<img class="background-image" alt="Background Image" src={{ asset('uploads/properties/1767179604_Villa2.jpg') }}>
 							</div>
-							<div class="hover-state">
+							<div class="hover-state" style="background:#2f6f646e;">
 								<div class="align-vertical">
 									<a href="{{ route('Property.all') }}" class="btn btn-primary btn-white">Show all Property</a>
 								</div>
@@ -227,7 +185,7 @@
 <br>
     <center>    <a href="{{ route('complaint') }}"
         style="display: inline-block;
-        background: linear-gradient(135deg, #4d364748 0%, #38323e 100%);
+        background: linear-gradient(135deg, #2f6f64, #38323e 100%);
         color: white;
         text-decoration: none;
         padding: 12px 30px;
@@ -300,17 +258,17 @@
 
 		<script src="https://www.youtube.com/iframe_api"></script>
 		<script src="js/jquery.min.js"></script>
-        <script src="js/jquery.plugin.min.js"></script>
+        {{-- <script src="js/jquery.plugin.min.js"></script> --}}
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.flexslider-min.js"></script>
         <script src="js/smooth-scroll.min.js"></script>
-        <script src="js/skrollr.min.js"></script>
-        <script src="js/spectragram.min.js"></script>
+        {{-- <script src="js/skrollr.min.js"></script> --}}
+        {{-- <script src="js/spectragram.min.js"></script> --}}
         <script src="js/scrollReveal.min.js"></script>
         <script src="js/isotope.min.js"></script>
         <script src="js/twitterFetcher_v10_min.js"></script>
-        <script src="js/lightbox.min.js"></script>
-        <script src="js/jquery.countdown.min.js"></script>
+        {{-- <script src="js/lightbox.min.js"></script> --}}
+        {{-- <script src="js/jquery.countdown.min.js"></script> --}}
         <script src="js/scripts.js"></script>
     </body>
 </html>

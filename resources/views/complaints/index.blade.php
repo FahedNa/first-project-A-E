@@ -6,20 +6,21 @@
     <title>عرض الشكاوي</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 </head>
 <body>
     <div class="container mt-5">
-        <h1 class="text-center mb-4">📋 قائمة الشكاوي</h1>
+        <h1 class="text-center mb-4" style="color:#2f6f64">📋 Complaints list</h1>
 
         <div class="table-responsive">
             <table class="table table-striped table-hover">
-                <thead class="table-dark">
+                <thead class="table-dark" >
                     <tr>
-                        <th>#</th>
-                        <th>الشكوى</th>
-                        <th>المستخدم</th>
-                        <th>البريد</th>
-                        <th>التاريخ</th>
+                        <th style="background-color:#2f6f64">#</th>
+                        <th style="background-color:#2f6f64">coplaint</th>
+                        <th style="background-color:#2f6f64">User</th>
+                        <th style="background-color:#2f6f64">Email</th>
+                        <th style="background-color:#2f6f64">date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,11 +40,10 @@
             </table>
         </div>
 
-        <div class="text-center mt-4">
-            <a href="{{ route('complaints.create') }}" class="btn btn-primary">
-                <i class="fas fa-plus"></i> إضافة شكوى جديدة
-            </a>
-        </div>
+<div style="text-align: left"><a href="{{ route('dashboard') }}" class="btn btn-secondary" style="background-color:#2f6f64">Back</a>
+</div>
+
+
     </div>
 </body>
 </html>

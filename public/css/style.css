@@ -1,8 +1,8 @@
 /* ===== VARIABLES ===== */
 :root {
-    --primary-color: #3b4ca0;
-    --secondary-color: #706195;
-    --accent-color:#706195;
+    --primary-color:#2f6f64;
+    --secondary-color:#2f6f6485;
+    --accent-color:#2f6f64;
     --success-color: #4ade80;
     --danger-color: #f87171;
     --light-color: #f8f9fa;
@@ -37,7 +37,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero-section {
-    background: linear-gradient(rgba(46, 43, 55, 0.9), rgba(35, 41, 68, 0.9)),
+    background: linear-gradient(rgba(46, 43, 55, 0.9),#2f6f64),
                 url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
@@ -63,7 +63,7 @@ body {
 
 /* ===== SECTION TITLE ===== */
 .section-title {
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-weight: 700;
     margin-bottom: 2rem;
     position: relative;

@@ -16,9 +16,9 @@
 
             @endif
 <div class="container">
-    <h2>🏠 edit Property</h2>
+    <h2 style="color:#2f6f64">🏠 <b>edit Property</b></h2>
 
-    <form method="POST" action="{{ route('Property.update',$property->id) }}">
+    <form method="POST" action="{{ route('Property.update',$property->id) }} " enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label>Property Title</label>
@@ -30,7 +30,7 @@
 
         <div class="form-group">
             <label>Description</label>
-            <textarea placeholder="Describe the property..." name="Description"  value="{{ $property ->Description  }}"></textarea>
+                        <input type="text" name="Description" placeholder="Describe the property..." value="{{ $property ->Description  }}">
              @error('Description')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
@@ -53,14 +53,6 @@
     @enderror
             </div>
 
-            {{-- <div class="form-group">
-                <label>Property Type</label>
-                <select>
-                    <option>House</option>
-                    <option>Apartment</option>
-                    <option>Villa</option>
-                </select>
-            </div> --}}
         </div>
 
         <div class="form-group">
@@ -116,35 +108,32 @@
         </div>
 
         <div class="grid-2">
-            {{-- <div class="form-group">
-                <label>Status</label>
-                <select>
-                    <option>Available</option>
-                    <option>Sold</option>
-                    <option>Pending</option>
-                </select>
-            </div> --}}
+
 
             <div class="form-group">
                 <label>Status</label>
-                <input type="text" placeholder="Available,Sold,Pending,..." name="Status" value="{{ $property ->Status  }}">
+                <input type="text" placeholder="Available,Sold,rented,..." name="Status" value="{{ $property ->Status  }}">
                     @error('Status')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
             </div>
 
-            <div class="form-group">
-                <label>Image URL (Optional)</label>
-                <input type="text" placeholder="https://example.com/image.jpg" name="Image" value="{{ $property ->Image  }}">
-                    @error('Image')
+           <div class="form-group">
+    <label>add Property Image</label>
+    <input type="file" name="Image" class="form-control" accept="image/*">
+                @error('Image')
     <small class="form-text text-danger">{{$message}} </small>
     @enderror
-            </div>
+    @error('Image')
+        <small class="form-text text-danger">{{ $message }}</small>
+    @enderror
+</div>
         </div>
 
         <div class="buttons">
-            <button type="submit" class="btn-primary">Add Property</button>
-            <button type="button" class="btn-secondary">Cancel</button>
+            <button type="submit" class="btn-primary">edit Property</button>
+            <a href="{{ route('dashboard') }}"><button type="button" class="btn-secondary">Cancel</button></a>
+
         </div>
     </form>
 </div>

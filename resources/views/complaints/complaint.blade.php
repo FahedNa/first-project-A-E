@@ -2,7 +2,7 @@
 <html class="no-js">
     <head>
         <meta charset="utf-8">
-        <title>Real Estate Template | Contact</title>
+        <title>Real Estate Contact</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -54,13 +54,23 @@
             ✅ تم التسجيل بنجاح!
         </div>
 
+
+<nav>
+  
+    <a href="{{ route('contact') }}" class="btn btn-secondary btn"  style="background-color: #2f6f64;color:aliceblue"><b><-Back</b> </a>
+</nav>
+
+
+
+
+
 		<div class="main-container">
 			<section class="contact-thirds">
 				<div class="container">
 
 					<div class="row">
 						<div class="col-sm-12 text-center">
-							<b><h1>Add a complaint<br></b>
+							<b style="color:#2f6f64;"><h1 >Add a complaint<br></b>
 							We'd love to hear from you
 							</h1>
 						</div>
@@ -114,7 +124,7 @@ We will get back to you as soon as possible.
                                         @enderror
 									</div>
 
-                                    <input type="submit" class="btn btn-submit text-white" value="Send Message" id="submitBtn">
+                                    <input type="submit" class="btn btn-submit text-white" value="Send Message" id="submitBtn" style="color:#2f6f64;">
 
 									<div class="form-success">
 										<span class="text-white">Message sent - Thanks for your enquiry</span>

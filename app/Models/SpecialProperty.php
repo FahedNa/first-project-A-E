@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class SpecialProperty extends Model
 {
     use HasFactory;
+    protected $table = 'special_properties'; // مهم جدًا
 
     protected $fillable = ['number', 'description'];
 }

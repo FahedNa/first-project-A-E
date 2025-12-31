@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prime Properties - Luxury Real Estate</title>
+    <title>Real Estate</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,19 +18,55 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                <i class="fas fa-home me-2"></i>Prime Properties
-            </a>
-            <div class="ms-auto">
-                <span class="badge bg-light text-dark fs-6">
-                    <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
-                </span>
-            </div>
+    <div class="container">
+
+        <!-- Brand -->
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-home me-2"></i>Dashboard
+        </a>
+
+        <!-- Properties Count -->
+        <div class="ms-auto me-3">
+            <span class="badge bg-light text-dark fs-6">
+                <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
+            </span>
         </div>
-    </nav>
+        <!-- Dropdown Menu  -->
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                    <i class="fas fa-bars" style="color:white"></i> Menu
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li>
+                          <a class="dropdown-item" href="{{ route('complaints.index') }}">
+                        Complaints
+                        </a>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="dropdown-item" href="{{ route('result.index') }}">
+                        SpicialOrder
+                        </a>
+                    </li>
+                    <li>
+                        <form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit" class="btn btn-danger">
+        Logout
+    </button>
+</form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 
   <br>
   <br>
@@ -89,9 +125,18 @@
                 </div>
             </div>
         </div>
+         <!-- Properties Section -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="section-title mb-0">All Properties</h2>
+    <div class="d-flex gap-2">
 
-        <!-- Properties Section -->
-        <h2 class="section-title">Featured Properties</h2>
+        <!-- Add Property Button -->
+        <a href="{{ route('Property.create') }}" class="btn btn-success">
+            <i class="fas fa-plus-circle me-2"></i>Add Property
+        </a>
+    </div>
+</div>
+
 
         <!-- Properties Grid -->
         <div class="cards">
@@ -99,8 +144,8 @@
             <div class="property-card">
                 <!-- Property Image -->
                 <div class="card-image">
-                    <img src="{{ asset('1.png') }}" alt="{{ $property->Property_Title }}">
-                    <div class="property-badge">{{ $property->Property_Type }}</div>
+   <img src="{{ asset('uploads/properties/' . $property->Image) }}"  alt="{{ $property->Property_Title }}">
+           <div class="property-badge">{{ $property->Property_Type }}</div>
                     <div class="status-badge status-{{ strtolower($property->Status) }}">
                         {{ $property->Status }}
                     </div>
@@ -158,7 +203,7 @@
                     <!-- Price -->
                     <div class="price-tag">
                         ${{ number_format($property->Price, 2) }}
-                    
+
                     </div>
 
                     <!-- Additional Info -->
@@ -175,7 +220,7 @@
                         <a href="{{ route('Property.edit', $property->id) }}" class="btn-edit">
                             <i class="fas fa-edit"></i> Edit Property
                         </a>
-                        <form action="{{ route('Property.delete', $property->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('Property.delete', $property->id) }}" method="get" class="d-inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn-delete"
@@ -189,6 +234,7 @@
             @endforeach
         </div>
     </main>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>
