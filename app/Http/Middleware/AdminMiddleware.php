@@ -10,10 +10,10 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->is_admin) { // افترض عندك حقل is_admin في جدول users
+        if (Auth::check() && Auth::user()->is_admin) { //    is_admin في جدول users
             return $next($request);
         }
 
-        return redirect()->route('contact'); // لو مش admin يروح للـ landing page
+        return redirect()->route('contact'); // لو مو admin يروح للـ landing page
     }
 }

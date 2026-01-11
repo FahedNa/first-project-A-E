@@ -175,7 +175,11 @@
                 <div class="card-body p-4">
 
 
-
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
                     <form action="{{ route('result.store') }}" method="POST">
                         @csrf
 
@@ -203,7 +207,6 @@
                         <!-- Submit Button -->
                         <div class="d-grid" >
                             <button type="submit" class="navbar navbar-expand-lg" style="justify-content: center;">
-
                                 <div > Add Property</div>
 
                             </button>
@@ -219,6 +222,12 @@
 
 </div>
 
+<script>
+    setTimeout(() => {
+        document.getElementById('successMessage')?.remove();
+    }, 3000);
+</script>
 
 </body>
+
 </html>

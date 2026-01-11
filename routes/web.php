@@ -11,10 +11,18 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\SpecialPropertyController;
 use App\Http\Middleware\AdminMiddleware;
 
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('welcome');
+    
+
+
+
 Route::get('/properties', function () {
     return view('properties.index');
 })->name('properties.index');
-
 
 
 
@@ -32,13 +40,6 @@ Route::post('/logout', function () {
 })->name('logout');
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -77,24 +78,6 @@ Route::group(['prefix'=>'add'],function(){
 
 
 
-// begain authuntication
-    // Route::get('adualt','CustomAuthController@adualt');
-    // Route::get('adualt',[CustomAuthController::class,'adualt'])->middleware('CheckAge');
-    Route::group(['meddleware'=>['auth','CheckAge']],function(){
-
-        Route::get('adualt',[CustomAuthController::class,'adualt'])->name('adult');
-    });
-
-
-// end authuntication
-
-
-        Route::get('site',[CustomAuthController::class,'site'])->middleware('auth:web')->name('site');
-        Route::get('admin',[CustomAuthController::class,'admin'])->middleware(['auth:admin'])->name('admin');
-
-
-        Route::get('admin/login',[CustomAuthController::class,'adminLogin'])->name('admin.login');
-        Route::post('admin/login',[CustomAuthController::class,'checkAdminLogin'])->name('save.admin.login');
 
         // add copimlaint
 

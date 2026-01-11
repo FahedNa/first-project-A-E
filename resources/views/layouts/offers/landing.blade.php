@@ -17,11 +17,11 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700%7CRaleway:700' rel='stylesheet' type='text/css'>
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-            <!-- إلى -->
+    
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
-<!-- إلى -->
+
 <script src="{{ asset('js/script.js') }}"></script>
     </head>
     <body>

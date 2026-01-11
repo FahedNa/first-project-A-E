@@ -130,7 +130,7 @@
 
         <div class="buttons">
             <button type="submit" class="btn-primary">Add Property</button>
-            <button type="button" class="btn-secondary">Cancel</button>
+              <a href="{{ route('dashboard') }}"><button type="button" class="btn-secondary">Cancel</button></a>
         </div>
     </form>
 </div>

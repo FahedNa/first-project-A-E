@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Log in</title>
 
-    {{-- CSS --}}
+    {{-- CSS Link--}}
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
@@ -40,9 +40,6 @@
         email dosnt exisit
     </div>
 @endif
-
-
-
 
 
             {{-- Laravel Login Form --}}
