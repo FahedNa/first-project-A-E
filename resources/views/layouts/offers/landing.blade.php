@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
         <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700%7CRaleway:700' rel='stylesheet' type='text/css'>
         <script src="js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    
+
 <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 
@@ -77,7 +77,6 @@
 							<div class="row">
 								<div class="col-md-6 col-sm-9">
 									<h1 class="text-white">Voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae.</h1>
-									{{-- <a target="_blank" href="#" class="btn btn-primary btn-white">Learn more</a> --}}
 
 								</div>
 							</div>
@@ -96,7 +95,6 @@
 							<div class="row">
 								<div class="col-md-6 col-sm-9">
 									<h1 class="text-white">Voluptatem accusantium doloremque laudantium totam rem aperiam eaque ipsa quae.</h1>
-									{{-- <a target="_blank" href="#" class="btn btn-primary btn-white">Learn more</a> --}}
 
 								</div>
 							</div>
@@ -112,7 +110,6 @@
 							<div class="row">
 								<div class="col-md-6 col-sm-9">
 									<h1 class="text-white">Tempora incidunt ut labore dolore magnam aliquam voluptatem minima.</h1>
-									{{-- <a target="_blank" href="#" class="btn btn-primary btn-white">Learn more</a> --}}
 
 								</div>
 							</div>
@@ -256,19 +253,13 @@
 			</footer>
 		</div>
 
-		<script src="https://www.youtube.com/iframe_api"></script>
 		<script src="js/jquery.min.js"></script>
-        {{-- <script src="js/jquery.plugin.min.js"></script> --}}
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.flexslider-min.js"></script>
         <script src="js/smooth-scroll.min.js"></script>
-        {{-- <script src="js/skrollr.min.js"></script> --}}
-        {{-- <script src="js/spectragram.min.js"></script> --}}
         <script src="js/scrollReveal.min.js"></script>
         <script src="js/isotope.min.js"></script>
         <script src="js/twitterFetcher_v10_min.js"></script>
-        {{-- <script src="js/lightbox.min.js"></script> --}}
-        {{-- <script src="js/jquery.countdown.min.js"></script> --}}
         <script src="js/scripts.js"></script>
     </body>
 </html>

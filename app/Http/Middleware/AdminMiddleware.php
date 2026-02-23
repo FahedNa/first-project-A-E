@@ -14,6 +14,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect()->route('contact'); // لو مو admin يروح للـ landing page
+        return redirect()->route('contact'); // يروح للـ landing page
     }
 }

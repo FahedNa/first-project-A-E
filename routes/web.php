@@ -1,6 +1,5 @@
 
 <?php
-
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
@@ -12,26 +11,10 @@ use App\Http\Controllers\SpecialPropertyController;
 use App\Http\Middleware\AdminMiddleware;
 
 
-
+//to welcome
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
-    
-
-
-
-Route::get('/properties', function () {
-    return view('properties.index');
-})->name('properties.index');
-
-
-
-
-// ازا ما عملت name  مالح يشوفو
-Route::get('login',function(){
-    return "must be login";
-})->name('login');
-
 
 //To auth
 Route::post('/logout', function () {
@@ -39,7 +22,7 @@ Route::post('/logout', function () {
     return redirect('/'); // Landing Page
 })->name('logout');
 
-
+require __DIR__.'/auth.php';
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -47,15 +30,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-require __DIR__.'/auth.php';
-
-
 Route::get('add',[AddPropertyController::class,'store']);
 
 Route::group(['prefix'=>'add'],function(){
-    // Route::get('store',[CrudController::class,'store']);
-    //viwe يعني  form  تنادي عل create
+
     Route::get('create',[AddPropertyController::class,'create'])->name('Property.create');
     Route::post('store',[AddPropertyController::class,'store'])->name('add.store');
     // عرض  data
@@ -68,20 +46,9 @@ Route::group(['prefix'=>'add'],function(){
    // عرض  data
     Route::get('allAdmin',[AddPropertyController::class,'AdmingetAllProperty'])->middleware(AdminMiddleware::class)
     ->name('dashboard');
-
-
-
-
-
-
 });
 
-
-
-
         // add copimlaint
-
-
 Route::resource('complaints', ComplaintController::class)->only(['create', 'store', 'index']);
 
 
@@ -94,15 +61,15 @@ Route::get('/comlaint', function () {
 })->name('complaint');
 
 
-
-
 Route::post('/result', [SpecialPropertyController::class, 'store'])->name('result.store');
 Route::get('/result', [SpecialPropertyController::class, 'index'])->name('result.index');
-
-
 
 Route::get('/listSpicialOreder', function () {
     return view('special_properties.index');
 });
 
+
+// Route::get('/properties', function () {
+//     return view('properties.index');
+// })->name('properties.index');
 

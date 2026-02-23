@@ -10,7 +10,6 @@ class ComplaintController extends Controller
     // عرض صفحة إضافة شكوى
     public function create()
     {
-        // return view('complaints.create');
         return view('complaints.complaint');
     }
 
@@ -28,13 +27,12 @@ class ComplaintController extends Controller
         Complaint::create($validated);
 
         return redirect()->route('complaints.create')
-            ->with('success', 'تم إرسال شكواك بنجاح! سنقوم بالرد في أقرب وقت.');
+            ->with('success', 'تم إرسال شكواك بنجاح! ');
     }
 
-    // عرض جميع الشكاوي (اختياري للإدارة)
+    // عرض جميع الشكاوي
     public function index()
     {
-        // $complaints = Complaint::orderBy('created_at', 'desc')->get();
                 $complaints = Complaint::orderBy('created_at')->get();
 
         return view('complaints.index', compact('complaints'));

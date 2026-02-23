@@ -42,10 +42,10 @@ class LoginController extends Controller
 protected function authenticated(Request $request, $user)
 {
     if ($user->is_admin) {
-        return redirect()->route('dashboard'); // المسؤول يروح للـ dashboard
+        return redirect()->route('dashboard'); //dashboard  يروح للـ
     }
 
-    return redirect()->route('contact'); // المستخدم العادي يروح للصفحة الرئيسية
+    return redirect()->route('contact'); //يروح landing
 }
 
 

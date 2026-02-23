@@ -60,33 +60,17 @@ public function store(AddRequest $request)
         'Bathrooms' => $request->Bathrooms,
         'Square_Feet' => $request->Square_Feet,
         'Status' => $request->Status,
-        'Image' => $imageName, // اسم الصورة
+        'Image' => $imageName, 
     ]);
 
     return redirect()->back()->with('success', 'Property added successfully');
 }
 
 
-
-
-
-
-
-
-
-
-    // ...........................................................
     public function AdmingetAllProperty(){
                     $add=AddProperty::select('id','Property_Title','Description','Price','Property_Type','Street_Address','phone_num','floor','Bedrooms','Bathrooms','Square_Feet','Status','Image')->get();
         return view('layouts.offers.adminallProperty',compact('add'));
     }
-    //with out searsh
-        // //getallofeer
-        // public function getAllProperty(){
-        //     //get return data as collection
-        //     $add=AddProperty::select('id','Property_Title','Description','Price','Property_Type','Street_Address','phone_num','floor','Bedrooms','Bathrooms','Square_Feet','Status','Image')->get();
-        //     return view('layouts.offers.allProperty',compact('add'));
-        // }
 
           public function editProperty($id){
             //validate if id exist
@@ -95,15 +79,8 @@ public function store(AddRequest $request)
         $property=AddProperty::select('id','Property_Title','Description','Price','Property_Type','Street_Address','phone_num','floor','Bedrooms','Bathrooms','Square_Feet','Status','Image')->find($id);
             return view('layouts.offers.editProperty',compact('property'));
 
-            // return $id;
         }
-        // public function updateProperty(AddRequest $request , $property_id){
 
-        //     //validate
-        //     //update
-        //         $add=AddProperty::find($property_id);
-        //     $add ->update($request ->all());
-        //     return redirect()-> back() -> with(['success' => 'update sucsess']);}
 public function updateProperty(AddRequest $request, $property_id)
 {
     $property = AddProperty::findOrFail($property_id);
@@ -140,11 +117,6 @@ public function updateProperty(AddRequest $request, $property_id)
 
     return redirect()->back()->with('success', 'Property updated successfully');
 }
-
-
-
-
-
 
         // ........
         public function deleteProperty($id){

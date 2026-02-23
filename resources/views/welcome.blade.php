@@ -40,7 +40,7 @@
 
                             <a href="{{ route('register') }}" class="btn btn-register btn-auth">
                                 <i class="fas fa-user-plus"></i>
-                                Create Free Account
+                                 Create Free Account
                             </a>
                         </div>
 
