@@ -27,7 +27,7 @@ class AddPropertyController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    //all method
+    //جيب كل العقارات من داتابيز
     public function getProperty()
     {
       return  AddProperty::get();
@@ -41,13 +41,14 @@ class AddPropertyController extends Controller
 public function store(AddRequest $request)
 {
     $imageName = null;
-
+// رفع صور اختياري
     if ($request->hasFile('Image')) {
         $image = $request->file('Image');
         $imageName = time() . '_' . $image->getClientOriginalName();
+        // حفظ الصورة في الملف
         $image->move(public_path('uploads/properties'), $imageName);
     }
-
+// تخزين في داتا بيز
     AddProperty::create([
         'Property_Title' => $request->Property_Title,
         'Description' => $request->Description,
@@ -60,7 +61,7 @@ public function store(AddRequest $request)
         'Bathrooms' => $request->Bathrooms,
         'Square_Feet' => $request->Square_Feet,
         'Status' => $request->Status,
-        'Image' => $imageName, 
+        'Image' => $imageName,
     ]);
 
     return redirect()->back()->with('success', 'Property added successfully');
@@ -73,7 +74,7 @@ public function store(AddRequest $request)
     }
 
           public function editProperty($id){
-            //validate if id exist
+
         AddProperty::findOrFail($id);
 
         $property=AddProperty::select('id','Property_Title','Description','Price','Property_Type','Street_Address','phone_num','floor','Bedrooms','Bathrooms','Square_Feet','Status','Image')->find($id);
@@ -129,7 +130,7 @@ public function updateProperty(AddRequest $request, $property_id)
             return redirect()-> back() -> with(['success' => 'success deleted']);
 
         }
-//searsh
+// function searsh
 public function getAllProperty(Request $request)
 {
     $query = AddProperty::query();
@@ -154,5 +155,13 @@ public function getAllProperty(Request $request)
     return view('layouts.offers.allProperty', compact('add'));
 }
 
+
+
+// show Details property
+public function show($id)
+{
+    $property = AddProperty::findOrFail($id);
+    return view('layouts.offers.showdetails', compact('property'));
+}
 
 }

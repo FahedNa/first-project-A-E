@@ -10,4 +10,9 @@ class addproperty extends Model
 
     protected $hidden = ['created_at','updated_at'];
 
+    public function favorites()
+{
+    return $this->hasMany(Favorite::class, 'add_property_id');
+}
+
 }

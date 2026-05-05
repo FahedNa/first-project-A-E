@@ -31,36 +31,43 @@
 			  <div class="double-bounce2"></div>
 			</div>
     	</div>
+        {{-- navbar --}}
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-content">
+            <!-- Logo -->
+            <a href="{{ route('contact') }}" class="logo">
+                <img src="img/logo-dark.png" alt="Logo">
+            </a>
 
-		<div class="nav-container">
-			<nav class="simple-bar top-bar" >
-				<div class="container">
-
-
-					<div class="row nav-menu">
-						<div class="col-md-3 col-sm-3 columns">
-							<a href="index.html">
-							<img class="logo logo-dark" alt="Logo" src="img/logo-dark.png">
-						</div>
-
-                        <div class="col-md-9 col-sm-9 columns text-right">
-
-             <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-success" style="background-color: #2f6f64">
-        Logout
-    </button>
-</form>
+            <!-- الروابط -->
 
 
+            <div class="nav-links">
+                <!-- About Us -->
+                <a href="{{ route('about') }}" class="nav-btn about-btn">
+                    <i class="fas fa-info-circle"></i>
+                    About Us
+                </a>
+
+                <!-- Contact Us -->
+                <a href="{{ route('contactt') }}" class="nav-btn contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    Contact Us
+                </a>
+
+                <!-- Logout -->
+                <form action="{{ route('logout') }}" method="POST" class="logout-form">
+                    @csrf
+                    <button type="submit" class="nav-btn logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
-				</div>
-			</nav>
-
-
-
-		</div>
 
 		<div class="main-container">
 		<a id="hero-slider" class="in-page-link"></a>
@@ -200,7 +207,32 @@
 
 
 			</section>
+            {{-- ....................... --}}
+            <section class="feature-selector">
+				<div class="container">
+                <center><span style="font-size:40px" ><b>If you want more options, ask a offices for help. </b></span></center>
+<br>
+<br>
+    <center>    <a href="{{ route('front.offices.index') }}"
+        style="display: inline-block;
+        background: linear-gradient(135deg, #2f6f64, #38323e 100%);
+        color: white;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 6px;
+        font-weight: 600;
+        transition: transform 0.2s ease;
+        margin: 15px 0;
+        box-shadow: 0 4px 6px rgba(102, 126, 234, 0.2);">
+        <span style="font-size: 16px;">
+            <i class="fas fa-comment-alt" style="margin-right: 8px;"></i>
+          View Offices
+        </span>
+</a></center>
+				</div>
 
+
+			</section>
 		<div class="footer-container">
 			<footer class="details">
 				<div class="container">
@@ -251,6 +283,10 @@
 
 				</div>
 			</footer>
+            <footer>
+    <p>© Fahed Naji & Baraa Mojahed - All Rights Reserved</p>
+</footer>
+
 		</div>
 
 		<script src="js/jquery.min.js"></script>

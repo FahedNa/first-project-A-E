@@ -19,58 +19,72 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
-    <div class="container">
+        <div class="container">
 
-        <!-- Brand -->
-        <a class="navbar-brand" href="#">
-            <i class="fas fa-home me-2"></i>Dashboard
-        </a>
+            <!-- Brand -->
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-home me-2"></i>Dashboard
+            </a>
 
-        <!-- Properties Count -->
-        <div class="ms-auto me-3">
-            <span class="badge bg-light text-dark fs-6">
-                <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
-            </span>
+            <!-- Properties Count -->
+            <div class="ms-auto me-3">
+                <span class="badge bg-light text-dark fs-6">
+                    <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
+                </span>
+            </div>
+
+            <!-- Dropdown Menu -->
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
+                        <i class="fas fa-bars" style="color:white"></i> Menu
+                    </a>
+
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <!-- Complaints -->
+                        <li>
+                            <a class="dropdown-item" href="{{ route('complaints.index') }}">
+                                <i class="fas fa-exclamation-circle me-2"></i> Complaints
+                            </a>
+                        </li>
+
+                        <!-- Special Order -->
+                        <li>
+                            <a class="dropdown-item" href="{{ route('result.index') }}">
+                                <i class="fas fa-star me-2"></i> Special Order
+                            </a>
+                        </li>
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <!-- ✅ Add Office Button -->
+                        <li>
+                            <a class="dropdown-item" href="{{ route('admin.offices.index') }}">
+                                <i class="fas fa-building me-2"></i> Add Office
+                            </a>
+                        </li>
+
+
+                        <li><hr class="dropdown-divider"></li>
+
+                        <!-- Logout -->
+                        <li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger">
+                                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                </button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
         </div>
-        <!-- Dropdown Menu  -->
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button"
-                   data-bs-toggle="dropdown" aria-expanded="false" style="color:white">
-                    <i class="fas fa-bars" style="color:white"></i> Menu
-                </a>
+    </nav>
 
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                          <a class="dropdown-item" href="{{ route('complaints.index') }}">
-                        Complaints
-                        </a>
-                        </a>
-                    </li>
+    <br><br><br>
 
-                    <li>
-                        <a class="dropdown-item" href="{{ route('result.index') }}">
-                        SpicialOrder
-                        </a>
-                    </li>
-                    <li>
-                        <form action="{{ route('logout') }}" method="POST">
-    @csrf
-    <button type="submit" class="btn btn-danger">
-        Logout
-    </button>
-</form>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-
-    </div>
-</nav>
-
-  <br>
-  <br>
-  <br>
     <!-- Messages Alerts -->
     <div class="container">
         @if (Session::has('success'))
@@ -125,18 +139,17 @@
                 </div>
             </div>
         </div>
-         <!-- Properties Section -->
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="section-title mb-0">All Properties</h2>
-    <div class="d-flex gap-2">
 
-        <!-- Add Property Button -->
-        <a href="{{ route('Property.create') }}" class="btn btn-success">
-            <i class="fas fa-plus-circle me-2"></i>Add Property
-        </a>
-    </div>
-</div>
-
+        <!-- Properties Section -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="section-title mb-0">All Properties</h2>
+            <div class="d-flex gap-2">
+                <!-- Add Property Button -->
+                <a href="{{ route('Property.create') }}" class="btn btn-success">
+                    <i class="fas fa-plus-circle me-2"></i>Add Property
+                </a>
+            </div>
+        </div>
 
         <!-- Properties Grid -->
         <div class="cards">
@@ -144,8 +157,8 @@
             <div class="property-card">
                 <!-- Property Image -->
                 <div class="card-image">
-   <img src="{{ asset('uploads/properties/' . $property->Image) }}"  alt="{{ $property->Property_Title }}">
-           <div class="property-badge">{{ $property->Property_Type }}</div>
+                    <img src="{{ asset('uploads/properties/' . $property->Image) }}" alt="{{ $property->Property_Title }}">
+                    <div class="property-badge">{{ $property->Property_Type }}</div>
                     <div class="status-badge status-{{ strtolower($property->Status) }}">
                         {{ $property->Status }}
                     </div>
@@ -203,7 +216,6 @@
                     <!-- Price -->
                     <div class="price-tag">
                         ${{ number_format($property->Price, 2) }}
-
                     </div>
 
                     <!-- Additional Info -->
@@ -212,7 +224,6 @@
                             <div class="meta-label">Contact Number</div>
                             <div class="meta-value">{{ $property->phone_num }}</div>
                         </div>
-
                     </div>
 
                     <!-- Action Buttons -->
@@ -234,7 +245,7 @@
             @endforeach
         </div>
     </main>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

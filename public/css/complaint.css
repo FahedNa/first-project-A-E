@@ -1,0 +1,413 @@
+            :root {
+                --primary-color: #2f6f64;
+                --primary-dark: #1e4a42;
+                --primary-light: #3a8b7d;
+                --secondary-color: #38323e;
+                --accent-gradient: linear-gradient(135deg, #2f6f64, #38323e);
+                --text-dark: #333;
+                --text-light: #666;
+                --white: #fff;
+                --light-bg: #f8f9fa;
+                --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
+                --shadow-md: 0 8px 25px rgba(47, 111, 100, 0.15);
+                --shadow-lg: 0 15px 35px rgba(47, 111, 100, 0.25);
+                --border-radius: 20px;
+                --border-radius-sm: 10px;
+                --transition: all 0.3s ease;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            html, body {
+                height: 100%;
+                overflow: hidden; /* منع التمرير نهائياً */
+            }
+
+            body {
+                font-family: 'Open Sans', sans-serif;
+                background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 20px;
+                position: relative;
+            }
+
+
+
+            /* رسالة النجاح */
+            .success-message {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #28a745, #20c997);
+                color: white;
+                padding: 15px 25px;
+                border-radius: 50px;
+                box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+                z-index: 9999;
+                display: none;
+                animation: slideInRight 0.5s ease;
+                font-weight: 600;
+                font-size: 14px;
+                border: 2px solid rgba(255,255,255,0.2);
+                backdrop-filter: blur(10px);
+            }
+
+            .success-message.show {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .success-message i {
+                font-size: 20px;
+            }
+
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%) scale(0.8);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0) scale(1);
+                    opacity: 1;
+                }
+            }
+
+            /* حاوية الصفحة */
+            .page-container {
+                position: relative;
+                z-index: 1;
+                width: 100%;
+                max-width: 1000px;
+                height: calc(100vh - 40px);
+                margin: 0 auto;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* زر العودة */
+            .back-nav {
+                margin-bottom: 15px;
+                flex-shrink: 0;
+            }
+
+            .back-btn {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                background: var(--white);
+                color: var(--primary-color);
+                padding: 8px 20px;
+                border-radius: 50px;
+                font-weight: 600;
+                text-decoration: none;
+                font-size: 14px;
+                box-shadow: var(--shadow-md);
+                transition: var(--transition);
+                border: 2px solid transparent;
+            }
+
+            .back-btn i {
+                font-size: 16px;
+            }
+
+            .back-btn:hover {
+                background: var(--primary-color);
+                color: var(--white);
+                transform: translateX(-3px);
+            }
+
+            /* بطاقة النموذج */
+            .complaint-card {
+                background: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                border-radius: 30px;
+                box-shadow: var(--shadow-lg);
+                overflow: hidden;
+                border: 1px solid rgba(255,255,255,0.5);
+                display: flex;
+                flex-direction: column;
+                flex: 1;
+                min-height: 0; /* مهم لاحتواء المحتوى */
+            }
+
+            /* رأس البطاقة - مصغر */
+            .card-header {
+                background: var(--accent-gradient);
+                padding: 20px 30px;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                flex-shrink: 0;
+            }
+
+            .card-header::before {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+                animation: rotate 20s linear infinite;
+            }
+
+            .card-header h1 {
+                color: var(--white);
+                font-size: 28px;
+                font-weight: 700;
+                margin-bottom: 5px;
+                position: relative;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            }
+
+            .card-header p {
+                color: rgba(255,255,255,0.9);
+                font-size: 14px;
+                position: relative;
+                margin-bottom: 0;
+            }
+
+            /* محتوى البطاقة - مع سكرول داخلي إذا لزم الأمر */
+            .card-body {
+                padding: 25px 30px;
+                overflow-y: auto; /* سكرول داخلي فقط للمحتوى */
+                flex: 1;
+                min-height: 0;
+                scrollbar-width: thin;
+                scrollbar-color: var(--primary-color) #e0e0e0;
+            }
+
+            /* تخصيص شريط التمرير */
+            .card-body::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .card-body::-webkit-scrollbar-track {
+                background: #e0e0e0;
+                border-radius: 10px;
+            }
+
+            .card-body::-webkit-scrollbar-thumb {
+                background: var(--primary-color);
+                border-radius: 10px;
+            }
+
+            .card-body::-webkit-scrollbar-thumb:hover {
+                background: var(--primary-dark);
+            }
+
+            /* تنسيقات النموذج - مصغرة */
+            .complaint-form {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .form-group {
+                position: relative;
+                margin-bottom: 0;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 5px;
+                color: var(--text-dark);
+                font-weight: 600;
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .form-label i {
+                color: var(--primary-color);
+                margin-right: 5px;
+                font-size: 12px;
+                width: 16px;
+            }
+
+            .form-control {
+                width: 100%;
+                padding: 10px 15px 10px 40px;
+                border: 2px solid #e0e0e0;
+                border-radius: 12px;
+                font-size: 13px;
+                font-family: 'Open Sans', sans-serif;
+                transition: var(--transition);
+                background: var(--white);
+            }
+
+            .form-control:focus {
+                outline: none;
+                border-color: var(--primary-color);
+                box-shadow: 0 0 0 3px rgba(47, 111, 100, 0.1);
+            }
+
+            .form-control.is-invalid {
+                border-color: #dc3545;
+            }
+
+            .input-icon {
+                position: absolute;
+                left: 15px;
+                top: 33px;
+                color: #aaa;
+                font-size: 14px;
+                transition: var(--transition);
+                pointer-events: none;
+            }
+
+            textarea.form-control {
+                resize: none; /* منع تغيير الحجم */
+                min-height: 80px;
+                padding-top: 10px;
+            }
+
+            /* رسائل الخطأ */
+            .invalid-feedback {
+                color: #dc3545;
+                font-size: 11px;
+                margin-top: 3px;
+                display: flex;
+                align-items: center;
+                gap: 3px;
+            }
+
+            .invalid-feedback::before {
+                content: '\f06a';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                font-size: 11px;
+            }
+
+            /* زر الإرسال - مصغر */
+            .submit-btn {
+                background: var(--accent-gradient);
+                color: var(--white);
+                border: none;
+                padding: 12px 25px;
+                border-radius: 50px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                transition: var(--transition);
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+                border: 2px solid transparent;
+                margin-top: 5px;
+            }
+
+            .submit-btn:hover:not(:disabled) {
+                background: var(--white);
+                color: var(--primary-color);
+                border-color: var(--primary-color);
+                transform: translateY(-2px);
+            }
+
+            .submit-btn i {
+                font-size: 16px;
+            }
+
+            .submit-btn:disabled {
+                opacity: 0.7;
+                cursor: not-allowed;
+            }
+
+            /* رسائل النموذج */
+            .form-success,
+            .form-error {
+                display: none;
+                padding: 10px 15px;
+                border-radius: 8px;
+                font-weight: 600;
+                font-size: 12px;
+                margin-top: 10px;
+            }
+
+            .form-success {
+                background: #d4edda;
+                color: #155724;
+                border: 1px solid #c3e6cb;
+            }
+
+            .form-error {
+                background: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+            }
+
+            /* تلميحات الحقول */
+            .form-control::placeholder {
+                color: #aaa;
+                font-size: 12px;
+            }
+
+            /* تحسين للشاشات الصغيرة */
+            @media (max-width: 768px) {
+                body {
+                    padding: 10px;
+                }
+
+                .page-container {
+                    height: calc(100vh - 20px);
+                }
+
+                .card-header {
+                    padding: 15px 20px;
+                }
+
+                .card-header h1 {
+                    font-size: 24px;
+                }
+
+                .card-body {
+                    padding: 20px;
+                }
+
+                .form-control {
+                    padding: 8px 12px 8px 35px;
+                    font-size: 12px;
+                }
+
+                .input-icon {
+                    left: 12px;
+                    top: 31px;
+                    font-size: 12px;
+                }
+
+                textarea.form-control {
+                    min-height: 60px;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .card-header h1 {
+                    font-size: 22px;
+                }
+
+                .card-header p {
+                    font-size: 12px;
+                }
+
+                .submit-btn {
+                    padding: 10px 20px;
+                    font-size: 14px;
+                }
+
+                .success-message {
+                    left: 10px;
+                    right: 10px;
+                    top: 10px;
+                    padding: 12px 20px;
+                    font-size: 13px;
+                }
+            }

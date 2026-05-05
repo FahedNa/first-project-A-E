@@ -9,7 +9,8 @@ use App\Http\Controllers\Auth\CustomAuthController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\SpecialPropertyController;
 use App\Http\Middleware\AdminMiddleware;
-
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\OfficeController;
 
 //to welcome
 Route::get('/', function () {
@@ -24,11 +25,6 @@ Route::post('/logout', function () {
 
 require __DIR__.'/auth.php';
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
 Route::get('add',[AddPropertyController::class,'store']);
 
@@ -64,12 +60,38 @@ Route::get('/comlaint', function () {
 Route::post('/result', [SpecialPropertyController::class, 'store'])->name('result.store');
 Route::get('/result', [SpecialPropertyController::class, 'index'])->name('result.index');
 
+
 Route::get('/listSpicialOreder', function () {
     return view('special_properties.index');
 });
 
+// .........
+Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites.index');
+Route::post('/favorites/add/{id}', [FavoriteController::class, 'add'])->name('favorites.add');
+Route::delete('/favorites/remove/{id}', [FavoriteController::class, 'remove'])->name('favorites.remove');
 
-// Route::get('/properties', function () {
-//     return view('properties.index');
-// })->name('properties.index');
+//to about us
+Route::get('about', function () {
+    return view('layouts.offers.about');
+})->name('about');
 
+
+//to contact Us
+Route::get('contact', function () {
+    return view('layouts.offers.contact');
+})->name('contactt');
+
+
+// Route لعرض تفاصيل العقار
+Route::get('/property/{id}', [AddPropertyController::class, 'show'])->name('property.show');
+
+
+// Routes للأدمن (تتطلب تسجيل دخول)
+Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () {
+    Route::resource('offices', OfficeController::class);
+});
+
+// Routes للمستخدم العادي
+Route::prefix('offices')->name('front.offices.')->group(function () {
+    Route::get('/', [OfficeController::class, 'frontIndex'])->name('index');
+});

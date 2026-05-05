@@ -62,8 +62,13 @@
                 >
 
                 <div class="options">
-                   <p></p>
+
                     <a href="{{ route('password.request') }}">Forgot password?</a>
+                    <p></p>
+                    {{-- for test --}}
+                    <a href="{{ route('password.reset', ['token' => 'test-token-123']) }}">
+    Reset Password?
+</a>
                 </div>
 
                 <button type="submit">Sign In</button>

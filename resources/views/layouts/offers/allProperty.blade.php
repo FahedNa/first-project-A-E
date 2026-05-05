@@ -24,11 +24,19 @@
             <a class="navbar-brand" href="{{ route('contact') }}">
                 <i class="fas fa-home me-2"></i>Properties
             </a>
-            <div class="ms-auto">
-                <span class="badge bg-light text-dark fs-6">
-                    <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
-                </span>
-            </div>
+
+            <div class="ms-auto d-flex align-items-center gap-3">
+    <!-- عدد العقارات -->
+    <span class="badge bg-light text-dark fs-6">
+        <i class="fas fa-building me-1"></i> {{ $add->count() }} Properties
+    </span>
+    <!-- زر عرض المفضلة -->
+    <a href="{{ route('favorites.index') }}"
+       class="btn btn-outline-success d-flex align-items-center gap-1">
+        <i class="fas fa-heart"></i> Favorites
+    </a>
+
+</div>
         </div>
     </nav>
 
@@ -78,16 +86,45 @@
         <div class="cards">
             @foreach($add as $property)
             <div class="property-card">
+
                 <!-- Property Image -->
                 <div class="card-image">
-                  <img src="{{ asset('uploads/properties/' . $property->Image) }}"
+                    <a href="{{ route('property.show', $property->id) }}">
+    <div class="property-card">
+        <!-- المحتوى الحالي للبطاقة -->     <img src="{{ asset('uploads/properties/' . $property->Image) }}"
      alt="{{ $property->Property_Title }}">
+    </div>
+</a>
+
                     <div class="property-badge">{{ $property->Property_Type }}</div>
                     <div class="status-badge status-{{ strtolower($property->Status) }}">
                         {{ $property->Status }}
                     </div>
                 </div>
+     <form action="{{ route('favorites.add', $property->id) }}" method="POST"
+      style="position:absolute;  top:200px; right: 5px; z-index:10;">
+    @csrf
 
+    <button type="submit"
+        style="
+            background: rgba(0,0,0,0.6);
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+        "
+        onmouseover="this.style.background='rgba(220,53,69,0.9)'"
+        onmouseout="this.style.background='rgba(0,0,0,0.6)'"
+    >
+        <i class="fas fa-heart" style="color:white; font-size:20px;"></i>
+    </button>
+
+</form>
                 <!-- Property Details -->
                 <div class="card-content">
                     <!-- Title and Location -->
@@ -147,6 +184,7 @@
                     <div class="property-meta">
                             <p class="meta-value">Contact Number:{{ $property->phone_num }}</p>
                     </div>
+
                 </div>
             </div>
             @endforeach
