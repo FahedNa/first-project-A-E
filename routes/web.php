@@ -95,3 +95,14 @@ Route::middleware(['auth'])->prefix('admin')->name('admin.')->group(function () 
 Route::prefix('offices')->name('front.offices.')->group(function () {
     Route::get('/', [OfficeController::class, 'frontIndex'])->name('index');
 });
+
+//chatbt
+Route::view('/chatbot', 'chatbot')->name('chatbot');
+
+// policies&Agement
+Route::get('/policies-and-agreement', function () {
+    return view('layouts.offers.policies&agrement');
+})->name('policies.agreement');
+
+// map
+Route::view('/map', 'layouts.offers.map')->name('offers.map');

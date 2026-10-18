@@ -130,7 +130,6 @@ public function updateProperty(AddRequest $request, $property_id)
             return redirect()-> back() -> with(['success' => 'success deleted']);
 
         }
-// function searsh
 public function getAllProperty(Request $request)
 {
     $query = AddProperty::query();
