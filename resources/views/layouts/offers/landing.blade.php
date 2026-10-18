@@ -122,6 +122,68 @@
 
     </style>
 </head>
+
+{{-- notification --}}
+
+<!-- Welcome Notification -->
+<div id="welcomeToast"
+     style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #2f6f64;
+        color: white;
+        padding: 16px 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px #0002;
+        z-index: 99999;
+        display: none;
+        max-width: 320px;
+     ">
+    <button onclick="closeWelcomeToast()"
+            style="float:right; background:none; border:none;
+                   color:white; font-size:20px; cursor:pointer;">
+        &times;
+    </button>
+
+    <strong>🏡 رسالة لك</strong>
+    <div id="welcomeMessage" style="margin-top:8px;"></div>
+</div>
+
+<script>
+    const welcomeMessages = [
+        "اختيارك الان هام بلنسبة لك 🏡",
+        "اكتشف عقارك الجديد اليوم 🔑",
+        "بيت أحلامك صار أقرب! 🏠",
+        "تصفّح أحدث العقارات المضافة ✨",
+        "يمكنك العثور على منزلك المثالي معنا ❤️",
+        "لا تفوّت فرصة اكتشاف عقاراتنا الجديدة!"
+    ];
+
+    function showWelcomeToast() {
+        const randomIndex = Math.floor(
+            Math.random() * welcomeMessages.length
+        );
+
+        document.getElementById('welcomeMessage').textContent =
+            welcomeMessages[randomIndex];
+
+        const toast = document.getElementById('welcomeToast');
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+            toast.style.display = 'none';
+        }, 5000);
+    }
+
+    function closeWelcomeToast() {
+        document.getElementById('welcomeToast').style.display = 'none';
+    }
+
+    window.addEventListener('load', showWelcomeToast);
+</script>
+</body>
+
 <body>
 
     <!-- Top Bar -->
